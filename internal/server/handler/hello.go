@@ -1,0 +1,9 @@
+package handler
+
+import (
+    "github.com/gofiber/fiber/v3"
+)
+
+func Hello(c fiber.Ctx) error {
+    return c.SendString("hello world")
+}

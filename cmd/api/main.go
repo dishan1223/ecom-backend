@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ecom-backend/internal/initializer"
 	"ecom-backend/internal/server/handler"
 	"log"
 	"os"
@@ -9,18 +10,22 @@ import (
 	"github.com/joho/godotenv"
 )
 
+func init() {
+	initializer.LoadEnv()
+	initializer.ConnectToDB()
+	initializer.SyncDB()
+}
 
-func main(){
-    err := godotenv.Load()
-    if err != nil{
-        panic(err)
-    }
-    PORT := os.Getenv("PORT")
+func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+	PORT := os.Getenv("PORT")
 
+	app := fiber.New()
 
-    app := fiber.New()
+	app.Get("/", handler.Hello)
 
-    app.Get("/", handler.Hello)
-
-    log.Fatal(app.Listen(":" + PORT))
+	log.Fatal(app.Listen(":" + PORT))
 }

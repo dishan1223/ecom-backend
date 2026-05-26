@@ -1,8 +1,9 @@
 package main
 
 import (
+	"ecom-backend/internal/config"
 	"ecom-backend/internal/initializer"
-	"ecom-backend/internal/server/handler"
+	"ecom-backend/internal/server/routes"
 	"log"
 	"os"
 
@@ -23,9 +24,11 @@ func main() {
 	}
 	PORT := os.Getenv("PORT")
 
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		StructValidator: config.NewValidator(),
+	})
 
-	app.Get("/", handler.Hello)
+	routes.Start(app)
 
 	log.Fatal(app.Listen(":" + PORT))
 }

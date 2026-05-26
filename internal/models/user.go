@@ -1,5 +1,6 @@
 package models
 
-type x struct{
-    s string
+type User struct{
+	email string
+	name string
 }

@@ -15,5 +15,7 @@ func Start(a *fiber.App) {
 	v1 := api.Group("/v1")
 
 	v1.Get("/", handler.Hello)
-	v1.Post("/add-book", handler.AddBook)
+	v1.Post("/books/new", handler.AddBook)
+	v1.Get("/books/all", handler.GetBooks)
+	v1.Delete("/books/delete/:id", handler.DeleteBook)
 }

@@ -4,6 +4,7 @@ import (
 	"ecom-backend/internal/config"
 	"ecom-backend/internal/initializer"
 	"ecom-backend/internal/server/routes"
+	"ecom-backend/internal/service"
 	"log"
 	"os"
 
@@ -15,6 +16,7 @@ func init() {
 	initializer.LoadEnv()
 	initializer.ConnectToDB()
 	initializer.SyncDB()
+	service.Init(os.Getenv("JWT_SECRET"))
 }
 
 func main() {

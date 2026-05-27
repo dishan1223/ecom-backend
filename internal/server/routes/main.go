@@ -2,6 +2,7 @@ package routes
 
 import (
 	"ecom-backend/internal/server/handler"
+	AuthHandler "ecom-backend/internal/server/handler/auth"
 
 	"github.com/gofiber/fiber/v3"
 )
@@ -18,4 +19,6 @@ func Start(a *fiber.App) {
 	v1.Post("/books/new", handler.AddBook)
 	v1.Get("/books/all", handler.GetBooks)
 	v1.Delete("/books/delete/:id", handler.DeleteBook)
+
+	v1.Post("/user/new", AuthHandler.Signup)
 }

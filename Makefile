@@ -9,3 +9,8 @@ build:
 run:
 	@echo "Running $(BINARY_NAME)..."
 	go run $(CMD_DIR)/main.go
+
+render:
+	@echo "Rendering templ and running backend..."
+	go tool templ generate
+	go run $(CMD_DIR)/main.go

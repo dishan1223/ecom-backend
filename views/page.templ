@@ -1,0 +1,49 @@
+package views
+
+import "ecom-backend/internal/models"
+
+type Layout struct {
+    Page string
+    Data any
+}
+
+templ Navbar(){
+    <nav class="w-full h-16 mx-auto border-b border-gray-200">
+        <div class="flex items-center h-full justify-between">
+            <div>
+                <h1>Backend</h1> 
+            </div>
+            <div>
+                <a href="/">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2">Home</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+}
+
+
+templ Page(o Layout){
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>ECOM</title>
+    </head>
+    <body>
+        <div class="w-[80%] mx-auto">
+            @Navbar()
+            if o.Page == "home" {
+                @Hello(o.Data.([]models.Book))
+            }else {
+                <div>
+                    <h1>404 $)$</h1>
+                </div>
+            }
+        </div>
+    </body>
+    </html>
+}

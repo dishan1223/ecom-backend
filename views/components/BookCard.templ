@@ -1,0 +1,113 @@
+package components
+
+import (
+    "fmt"
+    "ecom-backend/internal/models"
+)
+templ BookCard(book models.Book){
+    <div 
+    class="
+        group flex flex-col
+        bg-white 
+        border border-stone-100 rounded-sm overflow-hidden 
+        transition-all duration-500 h
+        over:-translate-y-1.5 book-card-shadow relative
+        ">
+
+        if book.BestSeller {
+            <div class="absolute top-3 left-3 z-10">
+                <span 
+                    class="
+                        bg-stone-900 
+                        text-white 
+                        text-[9px] 
+                        uppercase 
+                        tracking-widest 
+                        px-1.5 py-0.5 
+                        font-medium
+                        ">
+                            Best Seller
+                        </span>
+            </div>
+        }
+        
+        <div class="aspect-[2/3] overflow-hidden bg-stone-50">
+            <img 
+                class="
+                    w-full 
+                    h-full 
+                    object-cover 
+                    transition-transform 
+                    duration-700 
+                    group-hover:scale-105" 
+                src={ book.CoverImage } 
+                alt={ book.BookName }
+            />
+        </div>
+        
+        <div class="p-4 flex flex-col flex-grow">
+            <div class="flex-grow">
+                <p 
+                    class="
+                        text-[9px] 
+                        uppercase 
+                        tracking-[0.2em] 
+                        text-stone-400 
+                        mb-1.5 
+                        font-medium
+                        ">
+                            { book.Category }
+                        </p>
+
+                <h3 
+                    class="
+                        text-base 
+                        font-serif 
+                        leading-tight 
+                        text-stone-900 
+                        group-hover:text-stone-600 
+                        transition-colors 
+                        mb-1 
+                        truncate
+                        " 
+                    title={book.BookName}>{book.BookName}</h3>
+
+                <p class="text-xs text-stone-500 italic mb-3">by {book.Writer}</p>
+            </div>
+            
+            <div class="flex items-end justify-between mt-auto pt-2 border-t border-stone-50">
+                <div class="flex flex-col">
+                    if book.OriginalPrice > book.CurrentPrice {
+                        <span class="text-[10px] text-stone-300 line-through mb-0">{fmt.Sprintf("%d",book.OriginalPrice)} tk</span>
+                    }
+                    <span class="text-base font-medium text-stone-900">{fmt.Sprintf("%d",book.CurrentPrice)} tk</span>
+                </div>
+                
+                <button 
+                    class="
+                        w-8 h-8 
+                        border border-stone-200 
+                        rounded-full 
+                        flex items-center justify-center 
+                        text-stone-400 
+                        hover:bg-stone-900 
+                        hover:text-white 
+                        hover:border-stone-900 
+                        transition-all duration-300">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="14" 
+                        height="14" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round">
+                        <path d="M5 12h14"/><path 
+                        d="M12 5v14"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+}

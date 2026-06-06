@@ -1,0 +1,50 @@
+package views
+
+
+import (
+    "ecom-backend/views/components/ui"
+)
+
+templ Layout() {
+    <!DOCTYPE html>
+    <html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+        <title>Lumina Books | Curated Literature</title>
+
+        <style>
+            body { font-family: 'Jost', sans-serif; }
+            h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+            .book-card-shadow { box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1); }
+            .book-card-shadow:hover { box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15); }
+        </style>
+
+    </head>
+    <body class="bg-[#faf9f6] text-stone-900 min-h-screen">
+        @ui.Navbar()
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+            { children... }
+
+        </main>
+
+        <footer class="border-t border-stone-200 mt-24 py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="font-serif italic text-stone-400">
+                    &copy; 2026 Lumina Books. All stories told.
+                </p>
+            </div>
+        </footer>
+    </body>
+    </html>
+}

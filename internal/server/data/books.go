@@ -11,10 +11,14 @@ func GetBooks() []models.Book {
 
 	var books []models.Book
 
-	res := initializer.DB.Find(&books)
-
-	if res.Error != nil {
+	err := initializer.DB.Find(&books).Error
+	if err != nil {
 		log.Error("Failure in books fetching")
+	}
+
+	if len(books) == 0 {
+		log.Info("No Books found")
+		return []models.Book{}
 	}
 
 	return books

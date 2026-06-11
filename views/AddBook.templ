@@ -1,5 +1,79 @@
-package views
+package views 
 
-templ AddBook(){
-    <div></div>
+templ AddBook(errorMessage string) {
+    @Layout(){
+
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md my-6">
+
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Add New E-Commerce Book</h1>
+        
+        if errorMessage != "" {
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                { errorMessage }
+            </div>
+        }
+
+        <form action="/books/new" method="POST" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Book Name</label>
+                    <input type="text" name="book_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Writer Name</label>
+                    <input type="text" name="writer_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Cover Image URL</label>
+                <input type="url" name="cover" required placeholder="https://example.com/image.jpg" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea name="description" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Category</label>
+                    <input type="text" name="category" required placeholder="Fiction, Tech, etc." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Product Type</label>
+                    <select name="product_type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border">
+                        <option value="Hardcover">Hardcover</option>
+                        <option value="Paperback">Paperback</option>
+                        <option value="E-Book">E-Book</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Original Price</label>
+                    <input type="number" name="original_price" min="0" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Current Price</label>
+                    <input type="number" name="current_price" min="0" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Stock Count</label>
+                    <input type="number" name="stock" min="0" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border"/>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3 pt-2">
+                <input type="checkbox" name="best_seller" value="true" id="best_seller" class="h-4 w-4 text-blue-600 border-gray-300 rounded"/>
+                <label for="best_seller" class="text-sm font-medium text-gray-700">Mark as Best Seller</label>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 font-semibold transition">
+                Save Book to Catalog
+            </button>
+        </form>
+    </div>
+    }
 }

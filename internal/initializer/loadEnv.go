@@ -5,7 +5,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func LoadEnv() {
+func MustLoadEnv() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Error("Status :: Internal Server Error :: Failed to load environment variables.")

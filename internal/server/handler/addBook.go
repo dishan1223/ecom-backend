@@ -25,7 +25,5 @@ func AddBook(c fiber.Ctx) error {
 		})
 	}
 
-	return c.Status(http.StatusOK).JSON(fiber.Map{
-		"success": "Book created successfully",
-	})
+	return c.Redirect().To("/books/added")
 }

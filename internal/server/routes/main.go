@@ -26,4 +26,6 @@ func Start(a *fiber.App) {
 	v1.Post("/user/new", AuthHandler.Signup)
 
 	app.Get("/", templ.Handler(views.Home(data.GetBooks())))
+	app.Get("/books/new", templ.Handler(views.AddBook("")))
+	app.Get("/books/added", templ.Handler(views.AddBookSuccess()))
 }
